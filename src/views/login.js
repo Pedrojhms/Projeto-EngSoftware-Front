@@ -5,7 +5,9 @@ import FormGroup from "../components/form-group";
 
 import { useNavigate } from "react-router-dom";
 
-import axios from "axios";
+import UsuarioService from "../app/service/usuarioService";
+
+const usuarioService = new UsuarioService();
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,12 +21,13 @@ const Login = () => {
   };
 
   const handleEntrar = () => {
-    axios
-      .post("http://localhost:8080/api/usuarios/autenticar", {
+    usuarioService
+      .autenticar({
         email: email,
         senha: senha,
       })
       .then((response) => {
+        localStorage.setItem("_usuario_logado", JSON.stringify(response.data));
         navigate("/inicio");
       })
       .catch((erro) => {
@@ -92,7 +95,7 @@ const Login = () => {
                     <button
                       type="button"
                       class="btn btn-danger"
-                      onClick={() => handleCadastrar()}
+                      onClick={handleCadastrar}
                     >
                       Cadastrar
                     </button>

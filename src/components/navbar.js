@@ -26,7 +26,7 @@ function NavBar() {
 
             <NavBarItem href="usuarios.html" label="Usuários" />
 
-            <NavBarItem href="/cadastro-usuario" label="Lançamentos" />
+            <NavBarItem href="/cadastro-usuario" label="Relizar Compra" />
 
             <NavBarItem href="/login" label="Login" />
           </ul>

@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Inicio = () => {
   const navigate = useNavigate();
   const [saldo, setSaldo] = useState(0);
+  const [nome, setNome] = useState("");
 
   const handleCadastrar = () => {
     navigate("/cadastro-usuario");
   };
 
+  useEffect(() => {
+    const usuarioLogadoString = localStorage.getItem("_usuario_logado");
+    const usuarioLogado = JSON.parse(usuarioLogadoString);
+
+    setNome(usuarioLogado.nome);
+  }, []);
+
   return (
     <div className="jumbotron">
-      <h1 className="display-3">Bem vindo!</h1>
-      <p class="lead">Esse é seu sistema de finanças.</p>
-      <p class="lead">Seu saldo atual é de R$ {saldo}</p>
+      <h1 className="display-3">Bem vindo {nome}!</h1>
+      <p className="lead">Esse é seu sistema de finanças.</p>
+      <p className="lead">Seu saldo atual é de R$ {saldo}</p>
       <hr className="my-4" />
       <p>
         E essa é sua área administrativa, utilize um dos menus ou botões abaixo
@@ -22,7 +30,7 @@ const Inicio = () => {
       <p className="lead">
         <a
           className="btn btn-primary btn-lg"
-          onClick={() => handleCadastrar()}
+          onClick={handleCadastrar}
           role="button"
         >
           <i className="fa fa-users"></i> Cadastrar Usuário

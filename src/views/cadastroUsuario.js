@@ -4,7 +4,9 @@ import Card from "../components/card";
 import FormGroup from "../components/form-group";
 
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import UsuarioService from "../app/service/usuarioService";
+
+const usuarioService = new UsuarioService();
 
 const CadastroUsuario = () => {
   const navigate = useNavigate();
@@ -17,8 +19,8 @@ const CadastroUsuario = () => {
 
   const handleCadastrar = () => {
     if (senha === senhaRepetica) {
-      axios
-        .post("http://localhost:8080/api/usuarios/salvar", {
+      usuarioService
+        .cadastrar({
           nome: nome,
           email: email,
           senha: senha,
