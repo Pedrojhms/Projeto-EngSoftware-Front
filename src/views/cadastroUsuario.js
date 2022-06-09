@@ -26,7 +26,7 @@ const CadastroUsuario = () => {
           senha: senha,
         })
         .then((response) => {
-          navigate("/inicio");
+          navigate("/login");
         })
         .catch((erro) => {
           setMensagemErro(erro.response.data);

@@ -1,10 +1,24 @@
 import React from "react";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 
 import Login from "../views/login";
 import CadastroUsuario from "../views/cadastroUsuario";
 import Inicio from "../views/inicio";
+import AutenticacaoService from "../app/service/autenticacaoService";
+
+function RotaAutenticada({ children }) {
+  if (!AutenticacaoService.isAutenticado()) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+}
 
 function Rotas() {
   return (
@@ -12,7 +26,14 @@ function Rotas() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
-        <Route path="/inicio" element={<Inicio />} />
+        <Route
+          path="/inicio"
+          element={
+            <RotaAutenticada>
+              <Inicio />
+            </RotaAutenticada>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../app/hooks/useLocalStorage";
 
 const Inicio = () => {
   const navigate = useNavigate();
+  const [usuarioLogado] = useLocalStorage("_usuario_logado");
   const [saldo, setSaldo] = useState(0);
   const [nome, setNome] = useState("");
 
@@ -11,9 +13,6 @@ const Inicio = () => {
   };
 
   useEffect(() => {
-    const usuarioLogadoString = localStorage.getItem("_usuario_logado");
-    const usuarioLogado = JSON.parse(usuarioLogadoString);
-
     setNome(usuarioLogado.nome);
   }, []);
 

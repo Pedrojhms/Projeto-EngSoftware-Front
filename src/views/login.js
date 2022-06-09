@@ -6,12 +6,14 @@ import FormGroup from "../components/form-group";
 import { useNavigate } from "react-router-dom";
 
 import UsuarioService from "../app/service/usuarioService";
+import useLocalStorage from "../app/hooks/useLocalStorage";
 
 const usuarioService = new UsuarioService();
 
 const Login = () => {
   const navigate = useNavigate();
 
+  const [store, setStore] = useLocalStorage("_usuario_logado");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState();
@@ -27,7 +29,8 @@ const Login = () => {
         senha: senha,
       })
       .then((response) => {
-        localStorage.setItem("_usuario_logado", JSON.stringify(response.data));
+        console.log(response.data);
+        setStore(response.data);
         navigate("/inicio");
       })
       .catch((erro) => {
@@ -87,14 +90,14 @@ const Login = () => {
 
                     <button
                       type="button"
-                      class="btn btn-success"
+                      className="btn btn-success"
                       onClick={() => handleEntrar()}
                     >
                       Entrar
                     </button>
                     <button
                       type="button"
-                      class="btn btn-danger"
+                      className="btn btn-danger"
                       onClick={handleCadastrar}
                     >
                       Cadastrar

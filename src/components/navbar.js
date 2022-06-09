@@ -1,8 +1,11 @@
 import React from "react";
+import useLocalStorage from "../app/hooks/useLocalStorage";
 
 import NavBarItem from "./navbar-item";
 
 function NavBar() {
+  const [, , remove] = useLocalStorage("_usuario_logado");
+
   return (
     <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
       <div className="container">
@@ -24,11 +27,11 @@ function NavBar() {
           <ul className="navbar-nav">
             <NavBarItem href="/inicio" label="Inicio" />
 
-            <NavBarItem href="usuarios.html" label="Usuários" />
+            <NavBarItem href="usuarios.html" label="Alguma Listagem" />
 
             <NavBarItem href="/cadastro-usuario" label="Relizar Compra" />
 
-            <NavBarItem href="/login" label="Login" />
+            <NavBarItem onClick={remove} href="/login" label="Sair" />
           </ul>
         </div>
       </div>
