@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Card from "../components/card";
 import FormGroup from "../components/form-group";
@@ -6,14 +6,14 @@ import FormGroup from "../components/form-group";
 import { useNavigate } from "react-router-dom";
 
 import UsuarioService from "../app/service/usuarioService";
-import useLocalStorage from "../app/hooks/useLocalStorage";
+import { UsuarioContext } from "../app/context/UsuarioContext";
 
 const usuarioService = new UsuarioService();
 
 const Login = () => {
   const navigate = useNavigate();
+  const { onAutenticar } = useContext(UsuarioContext);
 
-  const [store, setStore] = useLocalStorage("_usuario_logado");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState();
@@ -29,8 +29,7 @@ const Login = () => {
         senha: senha,
       })
       .then((response) => {
-        console.log(response.data);
-        setStore(response.data);
+        onAutenticar(response.data);
         navigate("/inicio");
       })
       .catch((erro) => {

@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "../app/hooks/useLocalStorage";
+import { UsuarioContext } from "../app/context/UsuarioContext";
 
 const Inicio = () => {
   const navigate = useNavigate();
-  const [usuarioLogado] = useLocalStorage("_usuario_logado");
+  const { usuario } = useContext(UsuarioContext);
   const [saldo, setSaldo] = useState(0);
-  const [nome, setNome] = useState("");
 
   const handleCadastrar = () => {
     navigate("/cadastro-usuario");
   };
 
-  useEffect(() => {
-    setNome(usuarioLogado.nome);
-  }, []);
-
   return (
     <div className="jumbotron">
-      <h1 className="display-3">Bem vindo {nome}!</h1>
+      <h1 className="display-3">
+        Bem vindo {usuario ? usuario.nome : "Desconhecido"}!
+      </h1>
       <p className="lead">Esse é seu sistema de finanças.</p>
       <p className="lead">Seu saldo atual é de R$ {saldo}</p>
       <hr className="my-4" />

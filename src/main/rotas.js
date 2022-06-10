@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import {
   BrowserRouter as Router,
@@ -10,10 +10,11 @@ import {
 import Login from "../views/login";
 import CadastroUsuario from "../views/cadastroUsuario";
 import Inicio from "../views/inicio";
-import AutenticacaoService from "../app/service/autenticacaoService";
+import { UsuarioContext } from "../app/context/UsuarioContext";
 
 function RotaAutenticada({ children }) {
-  if (!AutenticacaoService.isAutenticado()) {
+  const { isAutenticado } = useContext(UsuarioContext);
+  if (!isAutenticado()) {
     return <Navigate to="/login" />;
   }
 

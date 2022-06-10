@@ -1,10 +1,10 @@
-import React from "react";
-import useLocalStorage from "../app/hooks/useLocalStorage";
+import React, { useContext } from "react";
+import { UsuarioContext } from "../app/context/UsuarioContext";
 
 import NavBarItem from "./navbar-item";
 
 function NavBar() {
-  const [, , remove] = useLocalStorage("_usuario_logado");
+  const { onEncerraSessao } = useContext(UsuarioContext);
 
   return (
     <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
@@ -27,11 +27,11 @@ function NavBar() {
           <ul className="navbar-nav">
             <NavBarItem href="/inicio" label="Inicio" />
 
-            <NavBarItem href="usuarios.html" label="Alguma Listagem" />
+            <NavBarItem href="/listar" label="Alguma Listagem" />
 
             <NavBarItem href="/cadastro-usuario" label="Relizar Compra" />
 
-            <NavBarItem onClick={remove} href="/login" label="Sair" />
+            <NavBarItem onClick={onEncerraSessao} href="/login" label="Sair" />
           </ul>
         </div>
       </div>

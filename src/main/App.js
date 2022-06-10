@@ -4,15 +4,18 @@ import React from "react";
 
 import Rotas from "./rotas";
 import NavBar from "../components/navbar";
+import UsuarioProvider from "../app/context/UsuarioContext";
 
 class App extends React.Component {
   render() {
     return (
       <>
-        <NavBar />
-        <div className="container">
-          <Rotas />
-        </div>
+        <UsuarioProvider>
+          <NavBar />
+          <div className="container">
+            <Rotas />
+          </div>
+        </UsuarioProvider>
       </>
     );
   }
