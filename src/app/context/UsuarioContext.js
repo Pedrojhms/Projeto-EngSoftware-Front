@@ -15,6 +15,7 @@ export default function UsuarioProvider({ children }) {
       const usuario = {
         id: claims.userid,
         nome: claims.nome,
+        dataExp: claims.dataHoraExpiracao,
       };
 
       setUsuario(usuario);
@@ -33,6 +34,13 @@ export default function UsuarioProvider({ children }) {
   }
 
   function isAutenticado() {
+    if (usuario) {
+      const isExpirado = Date.now() > new Date(usuario.dataExp);
+      if (isExpirado) {
+        handleEncerraSessao();
+        return false;
+      }
+    }
     return !!usuarioToken; //Transformando variavel para boolean
   }
 
