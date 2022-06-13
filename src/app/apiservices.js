@@ -2,11 +2,18 @@ import axios from "axios";
 
 const httpClient = axios.create({
   baseURL: "https://projetofinalraoni-backend.herokuapp.com/",
+  withCredentials: true,
 });
 
 class ApiService {
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
+  }
+
+  static registrarToken(token) {
+    if (token) {
+      httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
   }
 
   post(url, objeto) {
