@@ -16,9 +16,9 @@ function RotaAutenticada({ children }) {
   const { isAutenticado } = useContext(UsuarioContext);
   if (!isAutenticado()) {
     return <Navigate to="/login" />;
-  } else {
-    return <Navigate to="/inicio" />;
   }
+
+  return children;
 }
 
 function Rotas() {
@@ -29,7 +29,7 @@ function Rotas() {
           path="/login"
           element={
             <RotaAutenticada>
-              <Login />
+              <Inicio />
             </RotaAutenticada>
           }
         />
