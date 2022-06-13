@@ -16,16 +16,23 @@ function RotaAutenticada({ children }) {
   const { isAutenticado } = useContext(UsuarioContext);
   if (!isAutenticado()) {
     return <Navigate to="/login" />;
+  } else {
+    return <Navigate to="/inicio" />;
   }
-
-  return children;
 }
 
 function Rotas() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <RotaAutenticada>
+              <Login />
+            </RotaAutenticada>
+          }
+        />
         <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
         <Route
           path="/inicio"
