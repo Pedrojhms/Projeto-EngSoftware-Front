@@ -15,7 +15,7 @@ import { UsuarioContext } from "../app/context/UsuarioContext";
 function RotaAutenticada({ children }) {
   const { isAutenticado } = useContext(UsuarioContext);
   if (!isAutenticado()) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return children;
@@ -25,14 +25,7 @@ function Rotas() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/login"
-          element={
-            <RotaAutenticada>
-              <Inicio />
-            </RotaAutenticada>
-          }
-        />
+        <Route path="/" element={<Login />} />
         <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
         <Route
           path="/inicio"
@@ -42,6 +35,7 @@ function Rotas() {
             </RotaAutenticada>
           }
         />
+        <Route path="*" element={<h1>Página não encontrada!</h1>} />
       </Routes>
     </Router>
   );

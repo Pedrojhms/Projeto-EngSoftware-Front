@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import Card from "../components/card";
 import FormGroup from "../components/form-group";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 import UsuarioService from "../app/service/usuarioService";
 import { UsuarioContext } from "../app/context/UsuarioContext";
@@ -12,11 +12,15 @@ const usuarioService = new UsuarioService();
 
 const Login = () => {
   const navigate = useNavigate();
-  const { onAutenticar } = useContext(UsuarioContext);
+  const { isAutenticado, onAutenticar } = useContext(UsuarioContext);
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState();
+
+  if (isAutenticado()) {
+    return <Navigate to="/inicio" />;
+  }
 
   const handleCadastrar = () => {
     navigate("/cadastro-usuario");

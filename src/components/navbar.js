@@ -31,7 +31,7 @@ function NavBar() {
 
             <NavBarItem href="/cadastro-usuario" label="Relizar Compra" />
 
-            <NavBarItem onClick={onEncerraSessao} href="/login" label="Sair" />
+            <NavBarItem onClick={onEncerraSessao} href="/" label="Sair" />
           </ul>
         </div>
       </div>
