@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const httpClient = axios.create({
-  //baseURL: "https://projetofinalraoni-backend.herokuapp.com/",
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://projetofinalraoni-backend.herokuapp.com/",
+  //baseURL: "http://localhost:8080/",
   withCredentials: true,
 });
 
