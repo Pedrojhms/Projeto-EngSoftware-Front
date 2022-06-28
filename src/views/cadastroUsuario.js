@@ -90,7 +90,7 @@ const CadastroUsuario = ({ edit }) => {
 
   const handleBuscarCep = async () => {
     const { data } = await cepService.consultar(cep)
-    setFormFields({ ...formFields, ...data })
+    setFormFields({ ...formFields, ...data, cidade: data.localidade })
   }
 
   return (
