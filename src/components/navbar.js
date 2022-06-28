@@ -27,10 +27,6 @@ function NavBar() {
           <ul className="navbar-nav">
             <NavBarItem href="/inicio" label="Inicio" />
 
-            <NavBarItem href="/listar" label="Alguma Listagem" />
-
-            <NavBarItem href="/cadastro-usuario" label="Relizar Compra" />
-
             <NavBarItem onClick={onEncerraSessao} href="/" label="Sair" />
           </ul>
         </div>

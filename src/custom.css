@@ -245,3 +245,15 @@ pre {
     text-align: center;
   }
 }
+
+.endereco-grupo {
+  display: flex;
+}
+
+#inputBairro, #inputCidade, #inputComplemento {
+  flex: 1;
+}
+
+#inputNumero, #inputUf {
+  width: 10%;
+}
