@@ -27,14 +27,8 @@ function Rotas() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro-usuario" element={<CadastroUsuario />} />
-        <Route
-          path="/inicio"
-          element={
-            <RotaAutenticada>
-              <Inicio />
-            </RotaAutenticada>
-          }
-        />
+        <Route path="/editar-usuario" element={<RotaAutenticada><CadastroUsuario edit={true} /></RotaAutenticada>} />
+        <Route path="/inicio" element={<RotaAutenticada><Inicio /></RotaAutenticada>} />
         <Route path="*" element={<h1>Página não encontrada!</h1>} />
       </Routes>
     </Router>
